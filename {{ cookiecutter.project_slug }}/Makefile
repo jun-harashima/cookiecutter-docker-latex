@@ -5,6 +5,7 @@ fi
 endef
 
 export PWD=`pwd`
+export START_DOCKER_CONTAINER
 export PROJECT_NAME={{ cookiecutter.project_slug }}
 export IMAGE_NAME=$(PROJECT_NAME)-image
 export CONTAINER_NAME=$(PROJECT_NAME)-container
