@@ -5,3 +5,5 @@ RUN apk add texlive
 {% if cookiecutter.editor == 'emacs' -%}
 RUN apk add emacs
 {%- endif %}
+
+WORKDIR /work
