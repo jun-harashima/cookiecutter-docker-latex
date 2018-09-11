@@ -1,6 +1,6 @@
 define START_DOCKER_CONTAINER
-if [ `$(DOCKER) inspect -f {% raw -%}{{.State.Running}}{%- endraw %} $(CONTAINER_NAME)` = "false" ] ; then
-        $(DOCKER) start $(CONTAINER_NAME)
+if [ `docker inspect -f {% raw -%}{{.State.Running}}{%- endraw %} $(CONTAINER_NAME)` = "false" ] ; then
+        docker start $(CONTAINER_NAME)
 fi
 endef
 
