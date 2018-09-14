@@ -13,25 +13,25 @@ export HOST_PORT={{ cookiecutter.host_port }}
 export CONTAINER_PORT=8888
 export DOCKERFILE=docker/Dockerfile
 
-init-docker: ## initialize Docker image
+create-image:
 	docker build -t $(IMAGE_NAME) -f $(DOCKERFILE) .
 
-create-container: ## create Docker container
+create-container:
 	docker run -it -v $(PWD):/work -p $(HOST_PORT):$(CONTAINER_PORT) --name $(CONTAINER_NAME) $(IMAGE_NAME)
 
-start-container: ## start Docker container
+start-container:
 	@echo "$$START_DOCKER_CONTAINER" | $(SHELL)
 	@echo "Launched $(CONTAINER_NAME)..."
 	docker attach $(CONTAINER_NAME)
 
-profile: ## show profile of the project
-	@echo "CONTAINER_NAME: $(CONTAINER_NAME)"
-	@echo "IMAGE_NAME: $(IMAGE_NAME)"
+clean: clean-container clean-image
 
-clean: clean-container clean-image ## remove all artifacts
-
-clean-container: ## remove Docker container
+clean-container:
 	docker rm $(CONTAINER_NAME)
 
-clean-image: ## remove Docker image
+clean-image:
 	docker image rm $(IMAGE_NAME)
+
+compile-tex: ## compile main.tex
+	latex main.tex
+	bibtex main
