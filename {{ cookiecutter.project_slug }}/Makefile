@@ -33,5 +33,5 @@ clean-image:
 	docker image rm $(IMAGE_NAME)
 
 compile-tex: ## compile main.tex
-	latex main.tex
-	bibtex main
+	latex src/main.tex
+	bibtex src/main
