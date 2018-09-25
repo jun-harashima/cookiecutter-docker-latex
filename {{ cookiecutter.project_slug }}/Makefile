@@ -9,15 +9,13 @@ export START_DOCKER_CONTAINER
 export PROJECT_NAME={{ cookiecutter.project_slug }}
 export IMAGE_NAME=$(PROJECT_NAME)-image
 export CONTAINER_NAME=$(PROJECT_NAME)-container
-export HOST_PORT={{ cookiecutter.host_port }}
-export CONTAINER_PORT=8888
 export DOCKERFILE=docker/Dockerfile
 
 create-image:
 	docker build -t $(IMAGE_NAME) -f $(DOCKERFILE) .
 
 create-container:
-	docker run -it -v $(PWD):/work -p $(HOST_PORT):$(CONTAINER_PORT) --name $(CONTAINER_NAME) $(IMAGE_NAME)
+	docker run -it -v $(PWD):/work --name $(CONTAINER_NAME) $(IMAGE_NAME)
 
 start-container:
 	@echo "$$START_DOCKER_CONTAINER" | $(SHELL)
