@@ -11,25 +11,25 @@ export IMAGE_NAME=$(PROJECT_NAME)-image
 export CONTAINER_NAME=$(PROJECT_NAME)-container
 export DOCKERFILE=docker/Dockerfile
 
-create-image:
+build:
 	docker build -t $(IMAGE_NAME) -f $(DOCKERFILE) .
 
-create-container:
+create:
 	docker run -it -v $(PWD):/work --name $(CONTAINER_NAME) $(IMAGE_NAME)
 
-start-container:
+attach:
 	@echo "$$START_DOCKER_CONTAINER" | $(SHELL)
 	@echo "Launched $(CONTAINER_NAME)..."
 	docker attach $(CONTAINER_NAME)
 
-clean: clean-container clean-image
+clean: remove-image remove-container
 
-clean-container:
-	docker rm $(CONTAINER_NAME)
-
-clean-image:
+remove-image:
 	docker image rm $(IMAGE_NAME)
 
-compile-tex: ## compile main.tex
+remove-container:
+	docker rm $(CONTAINER_NAME)
+
+compile:
 	latex -output-directory=src src/main.tex
 	bibtex src/main
