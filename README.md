@@ -1,6 +1,6 @@
 # cookiecutter-docker-latex
 
-This is a minimal cookiecutter template for comiling a LaTeX file.
+This is a minimal cookiecutter template for compiling a LaTeX file using Docker.
 
 ## Requirements
 
