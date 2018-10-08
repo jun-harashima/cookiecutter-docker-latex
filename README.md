@@ -29,6 +29,7 @@ In the above example, `cookiecutter` command makes `awesome_paper` directory whi
   - Dockerfile
 - src
   - main.tex
+  - main.bib
 
 Now you can compile a LaTeX file in a Docker container. First, build an image from the Dockerfile as follows:
 
