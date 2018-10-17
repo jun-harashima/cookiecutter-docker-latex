@@ -1,5 +1,7 @@
 # cookiecutter-docker-latex
 
+[![](https://img.shields.io/travis/jun-harashima/cookiecutter-docker-latex.svg)](https://travis-ci.org/jun-harashima/cookiecutter-docker-latex)
+
 This is a minimal cookiecutter template for compiling a LaTeX file using Docker.
 
 ## Requirements
