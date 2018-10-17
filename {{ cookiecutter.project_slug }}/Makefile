@@ -33,3 +33,6 @@ remove-container:
 compile:
 	latex -output-directory=src src/main.tex
 	bibtex src/main
+	latex -output-directory=src src/main.tex
+	latex -output-directory=src src/main.tex
+	dvipdfmx -o src/main.pdf src/main.dvi
