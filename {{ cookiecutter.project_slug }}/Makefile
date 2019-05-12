@@ -11,6 +11,12 @@ export IMAGE_NAME=$(PROJECT_NAME)-image
 export CONTAINER_NAME=$(PROJECT_NAME)-container
 export DOCKERFILE=docker/Dockerfile
 
+{%- if cookiecutter.macro == 'platex' %}
+export LATEX=platex
+{%- else %}
+export LATEX=latex
+{%- endif %}
+
 build:
 	docker build -t $(IMAGE_NAME) -f $(DOCKERFILE) .
 
@@ -31,8 +37,8 @@ remove-container:
 	docker rm $(CONTAINER_NAME)
 
 compile:
-	latex -output-directory=src src/main.tex
+	$(LATEX) -output-directory=src src/main.tex
 	bibtex src/main
-	latex -output-directory=src src/main.tex
-	latex -output-directory=src src/main.tex
+	$(LATEX) -output-directory=src src/main.tex
+	$(LATEX) -output-directory=src src/main.tex
 	dvipdfmx -o src/main.pdf src/main.dvi
