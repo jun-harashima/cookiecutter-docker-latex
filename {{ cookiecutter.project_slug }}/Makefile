@@ -11,7 +11,9 @@ export IMAGE_NAME=$(PROJECT_NAME)-image
 export CONTAINER_NAME=$(PROJECT_NAME)-container
 export DOCKERFILE=docker/Dockerfile
 
-{%- if cookiecutter.macro == 'platex' %}
+{%- if cookiecutter.macro == 'pdflatex' %}
+export LATEX=pdflatex
+{%- elif cookiecutter.macro == 'platex' %}
 export LATEX=platex
 {%- else %}
 export LATEX=latex
