@@ -43,4 +43,6 @@ compile:
 	bibtex src/main
 	$(LATEX) -output-directory=src src/main.tex
 	$(LATEX) -output-directory=src src/main.tex
+	{%- if cookiecutter.macro != 'pdflatex' %}
 	dvipdfmx -o src/main.pdf src/main.dvi
+	{%- endif %}
