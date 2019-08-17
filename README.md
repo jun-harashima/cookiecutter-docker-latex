@@ -22,6 +22,11 @@ Then, answer the following questions:
 ```
 project_name [project_name]: awesome-paper
 project_slug [awesome_paper]:
+Select macro:
+1 - latex
+2 - platex
+3 - pdflatex
+Choose from 1, 2, 3 [1]:
 ```
 
 In the above example, `cookiecutter` command makes `awesome_paper` directory which has the following directories and files:
