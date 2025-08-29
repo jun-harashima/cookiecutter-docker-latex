@@ -1,5 +1,25 @@
 \documentclass[]{article}
 
+{%- if cookiecutter.macro in ['xelatex', 'lualatex'] %}
+
+% ================================
+% Font settings for XeLaTeX / LuaLaTeX
+% ================================
+{%- if cookiecutter.macro == 'lualatex' %}
+\usepackage{luatexja-fontspec}
+\setmainjfont{NotoSerifCJKJP-Regular}
+
+{%- elif cookiecutter.macro == 'xelatex' %}
+\usepackage{xeCJK}
+\setCJKmainfont{NotoSerifCJKJP-Regular}
+
+{%- endif %}
+
+\usepackage{fontspec} % Western fonts
+\setmainfont{Latin Modern Roman}
+
+{%- endif %}
+
 \title{Your Awesome Study}
 
 \author{Your Name}

@@ -15,6 +15,10 @@ export DOCKERFILE=docker/Dockerfile
 export LATEX=pdflatex
 {%- elif cookiecutter.macro == 'platex' %}
 export LATEX=platex
+{%- elif cookiecutter.macro == 'xelatex' %}
+export LATEX=xelatex
+{%- elif cookiecutter.macro == 'lualatex' %}
+export LATEX=lualatex
 {%- else %}
 export LATEX=latex
 {%- endif %}
@@ -43,6 +47,6 @@ compile:
 	bibtex src/main
 	$(LATEX) -output-directory=src src/main.tex
 	$(LATEX) -output-directory=src src/main.tex
-	{%- if cookiecutter.macro != 'pdflatex' %}
+{%- if cookiecutter.macro in ['platex','latex'] %}
 	dvipdfmx -o src/main.pdf src/main.dvi
-	{%- endif %}
+{%- endif %}

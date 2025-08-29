@@ -1,5 +1,5 @@
 {
     "project_name": "project-name",
     "project_slug": "{{ cookiecutter.project_name.lower().replace(' ', '_').replace('-', '_') }}",
-    "macro": ["latex", "platex", "pdflatex"]
+    "macro": ["latex", "platex", "pdflatex", "xelatex", "lualatex"]
 }
