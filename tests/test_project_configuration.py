@@ -6,7 +6,7 @@ import re
 from binaryornot.check import is_binary
 from io import open
 
-RE_OBJ = re.compile('{{(\s?cookiecutter)[.](.*?)}}')
+RE_OBJ = re.compile(r'{{(\s?cookiecutter)[.](.*?)}}')
 
 
 def build_files_list(root_dir):
@@ -31,9 +31,9 @@ def test_default_configuration(cookies, context={}):
     result = cookies.bake(extra_context=context)
     assert result.exit_code == 0
     assert result.exception is None
-    assert result.project.basename == 'project_name'
-    assert result.project.isdir()
-    paths = build_files_list(str(result.project))
+    assert result.project_path.name == 'project_name'
+    assert result.project_path.is_dir()
+    paths = build_files_list(str(result.project_path))
 
     assert paths
     check_paths(paths)
@@ -43,9 +43,9 @@ def test_custom_configuration(cookies, context={'project_name': 'SomeConference2
     result = cookies.bake(extra_context=context)
     assert result.exit_code == 0
     assert result.exception is None
-    assert result.project.basename == 'someconference20xx'  # note formatted
-    assert result.project.isdir()
-    paths = build_files_list(str(result.project))
+    assert result.project_path.name == 'someconference20xx'  # note formatted
+    assert result.project_path.is_dir()
+    paths = build_files_list(str(result.project_path))
 
     assert paths
     check_paths(paths)
