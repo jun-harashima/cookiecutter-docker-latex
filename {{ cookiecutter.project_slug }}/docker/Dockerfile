@@ -12,3 +12,5 @@ RUN apk --no-cache add \
     font-noto-cjk
 
 WORKDIR /work
+
+CMD ["/bin/sh"]
