@@ -34,7 +34,7 @@ attach:
 	@echo "Launched $(CONTAINER_NAME)..."
 	docker attach $(CONTAINER_NAME)
 
-clean: remove-image remove-container
+clean: remove-container remove-image
 
 remove-image:
 	docker image rm $(IMAGE_NAME)
