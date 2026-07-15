@@ -12,15 +12,15 @@ export CONTAINER_NAME=$(PROJECT_NAME)-container
 export DOCKERFILE=docker/Dockerfile
 
 {%- if cookiecutter.macro == 'pdflatex' %}
-export LATEX=pdflatex
+export LATEXMK_OPT=-pdf
 {%- elif cookiecutter.macro == 'platex' %}
-export LATEX=platex
+export LATEXMK_OPT=-pdfdvi -latex=platex -e '$$dvipdf=q/dvipdfmx %O -o %D %S/'
 {%- elif cookiecutter.macro == 'xelatex' %}
-export LATEX=xelatex
+export LATEXMK_OPT=-pdfxe
 {%- elif cookiecutter.macro == 'lualatex' %}
-export LATEX=lualatex
+export LATEXMK_OPT=-pdflua
 {%- else %}
-export LATEX=latex
+export LATEXMK_OPT=-pdfdvi -e '$$dvipdf=q/dvipdfmx %O -o %D %S/'
 {%- endif %}
 
 build:
@@ -43,10 +43,4 @@ remove-container:
 	docker rm $(CONTAINER_NAME)
 
 compile:
-	$(LATEX) -output-directory=src src/main.tex
-	bibtex src/main
-	$(LATEX) -output-directory=src src/main.tex
-	$(LATEX) -output-directory=src src/main.tex
-{%- if cookiecutter.macro in ['platex','latex'] %}
-	dvipdfmx -o src/main.pdf src/main.dvi
-{%- endif %}
+	latexmk $(LATEXMK_OPT) -output-directory=src src/main.tex
