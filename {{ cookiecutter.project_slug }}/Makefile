@@ -14,7 +14,7 @@ export DOCKERFILE=docker/Dockerfile
 {%- if cookiecutter.macro == 'pdflatex' %}
 export LATEXMK_OPT=-pdf
 {%- elif cookiecutter.macro == 'platex' %}
-export LATEXMK_OPT=-pdfdvi -latex=platex -e '$$dvipdf=q/dvipdfmx %O -o %D %S/'
+export LATEXMK_OPT=-pdfdvi -latex=platex -e '$$dvipdf=q/dvipdfmx %O -o %D %S/; $$bibtex=q/pbibtex/'
 {%- elif cookiecutter.macro == 'xelatex' %}
 export LATEXMK_OPT=-pdfxe
 {%- elif cookiecutter.macro == 'lualatex' %}
